@@ -15,6 +15,8 @@ export interface DiscussionProps {
 
 const DiscussionPage: React.FC = () => {
     const [items, setItems] = useState<DiscussionProps[]>([]);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [menuText, setMenuText] = useState("");
 
     useEffect(() => {
         fetchItemsFromApi();
@@ -30,14 +32,22 @@ const DiscussionPage: React.FC = () => {
         await fetchItems().then((items) => setItems(items));
     }
 
-    const handlePlusClickApi = async (itemId: string) => {
+    const handlePlusClickApi = async (itemId: string, itemVotes: number) => {
+        if(itemVotes >= 10){
+            setMenuText("Шо ти тикаєш, я тобі зараз тикну. 10 максимум");
+            handleMenuClick();
+            return;
+        }
         await handlePlusClick(itemId).then(() => fetchItemsFromApi());
     }
 
     const handleMinusClickApi = async (itemId: string, itemVotes: number) => {
-        if (itemVotes > 1) {
-            await handleMinusClick(itemId).then(() => fetchItemsFromApi());
+        if (itemVotes <= 1) {
+            setMenuText("Куди тикаєш, мінімум голосів");
+            handleMenuClick();
+            return;
         }
+        await handleMinusClick(itemId).then(() => fetchItemsFromApi());
     }
 
     const handleDeleteVoteApi = async (itemId: string) => {
@@ -55,29 +65,39 @@ const DiscussionPage: React.FC = () => {
     const removeDiscussion = (itemId: string) => {
         handleDeleteClick(itemId).then(() => fetchItemsFromApi());
     }
+
+    const handleMenuClick = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
     
     return (
-        <section className={styles.disPage}>
-            <button className={styles.createButton} onClick={moveToFormPage}>Створити</button>
-            <h1>Discussion Page</h1>
-            <h2>Items:</h2>
-            {items && items.sort((a, b) => b.votes- a.votes).map(item => (
-                <div className={styles.discussionList} key={item.id}>
-                    <h3>{item.name}</h3>
-                    <p className={styles.description}>{item.description}</p>
-                    <p>Створено: {item.dateTime}</p>
-                    <div className={styles.buttons}>
-                        <button onClick={() => handlePlusClickApi(item.id)} className={styles.chooseButton}>+</button>
-                        <button onClick={async () => await handleMinusClickApi(item.id, item.votes)}className={styles.chooseButton}>-</button>
+        <>
+            {isMenuOpen 
+            && <div className={styles.tuktuk}>
+                <p>{menuText}</p>
+                <button onClick={handleMenuClick}>гроші не заплатили, тому тут галіма кнопка</button>
+                </div>}
+            <section className={styles.disPage}>
+                <button className={styles.createButton} onClick={moveToFormPage}>Створити</button>
+                <h1>DisКашаOn Ідей</h1>
+                {items && items.sort((a, b) => b.votes- a.votes).map(item => (
+                    <div className={styles.discussionList} key={item.id}>
+                        <h3>{item.name}</h3>
+                        <p className={styles.description}>{item.description}</p>
+                        <p>Створено: {item.dateTime}</p>
+                        <div className={styles.buttons}>
+                            <button onClick={async () => await handlePlusClickApi(item.id, item.votes)} className={styles.chooseButton}>+</button>
+                            <button onClick={async () => await handleMinusClickApi(item.id, item.votes)}className={styles.chooseButton}>-</button>
+                        </div>
+                        <h4>Голосів: {item.votes}</h4>
+                        <h4><button className={styles.deleteButton} onClick={() => handleDeleteVoteApi(item.id)}>Видалити</button> {item.votesToDelete}</h4>
+                        <h2>Запланований час: {item.planedTime}</h2>
+                        {howManyMinutes(item.dateTime) <= 5
+                        && <button className={styles.deleteButton} onClick={() => removeDiscussion(item.id)}>Видалити прямо зараз</button>}
                     </div>
-                    <h4>Голосів: {item.votes}</h4>
-                    <h4><button className={styles.deleteButton} onClick={() => handleDeleteVoteApi(item.id)}>Видалити</button> {item.votesToDelete}</h4>
-                    <h2>Запланований час: {item.planedTime}</h2>
-                    {howManyMinutes(item.dateTime) <= 5
-                    && <button className={styles.deleteButton} onClick={() => removeDiscussion(item.id)}>Видалити прямо зараз</button>}
-                </div>
-            ))}
-        </section>
+                ))}
+            </section>
+        </>
     );
 };
 

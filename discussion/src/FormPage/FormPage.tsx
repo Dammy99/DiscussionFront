@@ -30,11 +30,11 @@ const FormPage = () => {
     return (
         <div className={styles.father}>
             <button className={stylesbutton.createButton} onClick={moveToDiscussionPage}>Назад</button>
-            <h1>Form Page</h1>
+            <h1>Генерація твоїх ідей</h1>
             <form className={styles.formochka} onSubmit={handleFormSubmit}>
                 <section className={styles.submitform}>
                     <label className={styles.label} htmlFor="disName">Тема:</label>
-                    <input type="text" id="disName" value={name} onChange={handleNameChange} />
+                    <input className={styles.theme} type="text" id="disName" value={name} onChange={handleNameChange} />
 
                     <label className={styles.label} htmlFor="description">Опис:</label>
                     <textarea id="description" value={description} onChange={handleDescriptionChange} />

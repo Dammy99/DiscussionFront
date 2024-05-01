@@ -4,6 +4,9 @@
         flex-direction: column;
         row-gap: 15px;
         width: 100%;
+        .theme{
+            height: 25px;
+        }
     }
     display: flex;
     justify-content: center;
