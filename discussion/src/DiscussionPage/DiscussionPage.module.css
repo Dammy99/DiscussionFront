@@ -1,0 +1,193 @@
+/* @media (min-width: 768px) {
+    .discussionList {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        border: 1px solid #524545;
+    }
+}
+
+@media (max-width: 767px) {
+    .discussionList {
+        flex-direction: column;
+        border: 1px solid #6b5656;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 10px;
+        border-radius: 20px;
+    }
+}  */
+
+@media (min-width: 768px) {
+    .discussionList {
+        width: 60%;
+    }
+}
+@media (max-width: 767px) {
+.discussionList{
+    width: 100%;
+}
+}
+.discussionList {
+    margin: 1.5em 0 0.5em;
+    padding: 0.73em;
+    background: linear-gradient(83deg,
+            var(--yellow) 0 97%,
+            #fff0 calc(97% + 1px) 100%);
+    position: relative;
+    list-style: none;
+    display: inline-block;
+    transform: scale(0.85);
+    transition: var(--trans);
+    .description{
+        font-size: 22px;
+    }
+}
+
+.disPage {
+    font-family: "Lato", Arial, Helvetica, serif;
+    font-size: 1em;
+    /* background: linear-gradient(90deg, #131417, var(--dark) 35% 65%, #131417); */
+}
+
+
+h3 {
+    background: linear-gradient(182deg, #fff0 60%, var(--dark) 0 100%);
+    display: inline;
+    transform: rotate(-2deg);
+    position: absolute;
+    margin: 0;
+    margin-top: -2.25em;
+    left: 9vmin;
+    padding: 0.5em 0.75em;
+    color: var(--yellow);
+    border-radius: 0.25em;
+    font-size: 1.35em;
+    transform-origin: left bottom;
+}
+
+
+
+/* CSS
+.chooseButton {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.chooseButton:after {
+  content: "";
+  background-color: #ffe54c;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.chooseButton:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+@media (min-width: 768px) {
+  .chooseButton {
+    padding: 13px 50px 13px;
+  }
+} */
+
+
+/* buttons CSS */
+.buttons{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 20px;
+    
+}
+.chooseButton {
+    width: 100px;
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.chooseButton:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.chooseButton:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+
+.createButton {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.createButton:hover {
+  background-color: #fff;
+}
+
+.createButton:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .createButton {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
