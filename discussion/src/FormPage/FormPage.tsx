@@ -39,7 +39,7 @@ const FormPage = () => {
                     <label className={styles.label} htmlFor="description">Опис:</label>
                     <textarea id="description" value={description} onChange={handleDescriptionChange} />
 
-                    <input onChange={(e)=>setStartDate(e.target.value)} type="datetime-local" id="date" name="date" />
+                    <input className={styles.datimeinput} onChange={(e)=>setStartDate(e.target.value)} type="datetime-local" id="date" name="date" />
 
                     <button className={styles.submitButton} type="submit">Submit</button>
                 </section>

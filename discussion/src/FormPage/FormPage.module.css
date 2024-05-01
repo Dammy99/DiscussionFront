@@ -82,5 +82,9 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     width: 50%;
     color: none;
     opacity: 1;
-    height: 20px;
+    height: 40px;
+}
+
+.datimeinput{
+    min-height: 40px;
 }
