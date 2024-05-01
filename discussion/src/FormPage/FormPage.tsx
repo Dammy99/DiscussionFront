@@ -3,9 +3,11 @@ import styles from './FormPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { createItem } from '../api/apis';
 import stylesbutton from '../DiscussionPage/DiscussionPage.module.css';
+
 const FormPage = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    const [startDate, setStartDate] = useState("");
 
     const navigate = useNavigate();
     const moveToDiscussionPage = () => {
@@ -22,7 +24,7 @@ const FormPage = () => {
 
     const handleFormSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        await createItem(name, description).then(() => moveToDiscussionPage());
+        await createItem(name, description, startDate).then(() => moveToDiscussionPage());
     }
 
     return (
@@ -31,12 +33,14 @@ const FormPage = () => {
             <h1>Form Page</h1>
             <form className={styles.formochka} onSubmit={handleFormSubmit}>
                 <section className={styles.submitform}>
-                    <label className={styles.label} htmlFor="disName">Назва:</label>
+                    <label className={styles.label} htmlFor="disName">Тема:</label>
                     <input type="text" id="disName" value={name} onChange={handleNameChange} />
 
                     <label className={styles.label} htmlFor="description">Опис:</label>
                     <textarea id="description" value={description} onChange={handleDescriptionChange} />
-                    
+
+                    <input onChange={(e)=>setStartDate(e.target.value)} type="datetime-local" id="date" name="date" />
+
                     <button className={styles.submitButton} type="submit">Submit</button>
                 </section>
             </form>
