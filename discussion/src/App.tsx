@@ -1,6 +1,5 @@
 import './App.css'
 import { Route, Routes } from "react-router-dom";
-import React from "react";
 import DiscussionPage from './DiscussionPage/DiscussionPage';
 import FormPage from './FormPage/FormPage';
 
